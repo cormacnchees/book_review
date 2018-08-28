@@ -9,7 +9,64 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <!-- Visible on all views(pages) -->
   <body>
+
+    <!-- Navbar: from Bootstrap https://getbootstrap.com/docs/4.0/components/navbar/ -->
+     <nav class='navbar navbar-default'>
+       <div class='container'>
+         <!--Can add HTML classes inside Ruby -->
+         <div class='navbar-header'>
+           <%= link_to 'Book Review', root_path, class: 'navbar-brand' %>
+         </div>
+
+         <!-- Sign Up, Login, Sign Out -->
+         <ul class='nav navbar-nav'>
+           <li>
+             <%= link_to 'Sign Up', new_user_registration_path %>
+           </li>
+           <% if user_signed_in? %>
+            <li>
+              <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+            </li>
+           <% else %>
+            <li>
+              <%= link_to "Log In", new_user_session_path %>
+            </li>
+          <% end %>
+         </ul>
+
+        <!-- Right Side -->
+         <ul class='nav navbar-nav navbar-right'>
+
+           <!-- Bootstrap classes -->
+           <li class='dropdown'>
+             <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'>Categories <span class='caret'></span></a>
+             <ul class='dropdown-menu' role='menu'>
+               <% Category.all.each do |category| %>
+                <!-- If Statement to set current category as active in navbar -->
+                <li class='<%= 'active' if params[:category] == category.name %>'>
+                  <%= link_to category.name, books_path(category: category.name), class: 'link' %>
+                </li>
+               <% end %>
+             </ul>
+           </li>
+
+           <% if user_signed_in? %>
+            <li>
+              <%= link_to 'Add Book', new_book_path %>
+            </li>
+           <% end %>
+         </ul>
+
+        </div>
+
+    </nav>
+
+    <!-- Devise alert tags -->
+     <p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+
     <%= yield %>
   </body>
 </html>
