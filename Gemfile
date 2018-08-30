@@ -29,7 +29,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'sqlite3'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
@@ -44,4 +43,13 @@ end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
- 
+#added for Heroku
+group :development do
+  gem 'sqlite3'
+end
+
+#added for Heroku
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
