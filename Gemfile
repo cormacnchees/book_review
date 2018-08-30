@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.3.7'
 
 gem 'rails', '~> 5.2.1'
-gem 'sqlite3'
+
 #Users
 gem 'devise', '~> 4.5'
 #Allows display of book image
@@ -29,6 +29,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
@@ -42,3 +43,8 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# group :production do
+#   gem 'pg', '0.17.1'
+#   gem 'rails_12rails_12factor', '0.0.2'
+# end
