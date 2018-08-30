@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
   #before actions (DRY code). We want to find put for show, edit, updat, and destory. Makes @book accessable in each def
   before_action :find_book, only: [:show, :edit, :update, :destroy]
+  #prevent non-logged in users from accessing certain pages (redirects to sign-in)
+  before_action :authenticate_user!, only: [:new, :edit]
 
   def index
     #If Statement to sort books by category in index view
@@ -14,6 +16,11 @@ class BooksController < ApplicationController
   end
 
   def show
+    if @book.reviews.blank?
+      @average_review = 0
+    else
+      @average_review = @book.reviews.average(:rating).round(2)
+    end
   end
 
   #create new Book
@@ -62,7 +69,7 @@ class BooksController < ApplicationController
 
     #information user fills out in form
     def book_params
-      params.require(:book).permit(:title, :description, :author, :category_id)
+      params.require(:book).permit(:title, :description, :author, :category_id, :book_img   )
     end
 
     def find_book

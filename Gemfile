@@ -7,6 +7,8 @@ gem 'rails', '~> 5.2.1'
 gem 'sqlite3'
 #Users
 gem 'devise', '~> 4.5'
+#Allows display of book image
+gem 'paperclip', '~> 6.1'
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 #Forms

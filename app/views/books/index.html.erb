@@ -4,10 +4,22 @@
 <% if @books.count == 0 %>
   <h1>There are no books currently in this category</h1>
 <% else %>
-  <!-- Loop over each book, displays title -->
-  <% @books.each do |book| %>
-    <!--creates clickable link on each book's title -->
-    <h2><%= link_to book.title, book_path(book) %></h2>
-  <% end %>
-  
+
+  <div class="row">
+
+
+    <!-- Loop over each book, displays title -->
+    <% @books.each do |book| %>
+      <div class="col-md-3">
+        <!--creates clickable link on each book's title -->
+        <a href='/books/<%= book.id %>'>
+          <%= image_tag book.book_img.url(:book_index), class: "book" %>
+        </a>
+
+      </div>
+
+    <% end %>
+
+  </div>
+
 <% end %>

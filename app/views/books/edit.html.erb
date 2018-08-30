@@ -1,11 +1,18 @@
-<h1>Edit Book</h1>
 
-<!-- simple form syntax -->
-<%= simple_form_for @book, :html => { :multipart => true } do |f| %>
-  <!-- fills in category select with current category -->
-  <%= f.select :category_id, @categories %>
-  <%= f.input :title, label: 'Book Title' %>
-  <%= f.input :description %>
-  <%= f.input :author %>
-  <%= f.button :submit %>
-<% end %>
+
+
+    <h1>Edit Book</h1>
+
+    <!-- simple form syntax -->
+    <%= simple_form_for @book, :html => { :multipart => true } do |f| %>
+      <!-- fills in category select with current category -->
+      <%= f.select :category_id, @categories %>
+      <%= f.file_field :book_img %>
+      <%= f.input :title, label: 'Book Title' %>
+      <%= f.input :description %>
+      <%= f.input :author %>
+      <%= f.button :submit, :class => 'btn-custom2' %>
+    <% end %>
+
+  </div>
+</div>
